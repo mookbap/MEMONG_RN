@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
     View,
     StyleSheet,
@@ -9,9 +9,9 @@ import {
     Dimensions,
     PanResponder
 } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button,ButtonGroup } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
+import ViewSelector from './ViewSelector';
 
 const BottomSheet = (props) => {
     const { modalVisible, setModalVisible } = props;
@@ -33,6 +33,7 @@ const BottomSheet = (props) => {
         duration: 300,
         useNativeDriver: true,
     });
+
 
     const panResponders = useRef(PanResponder.create({
         onStartShouldSetPanResponder: () => true,
@@ -75,28 +76,32 @@ const BottomSheet = (props) => {
                 >
                     <View style={styles.background}/>
                 </TouchableWithoutFeedback>
+
                 <Animated.View
                     style={{...styles.bottomSheetContainer, transform: [{ translateY: translateY }]}}
                     {...panResponders.panHandlers}>
+
+                    <ViewSelector />
                     
-                    <Text>보기방식</Text>   
-                
                     <Button
-                    titleStyle={{
+                        titleStyle={{
+                            color: "red",
+                            fontSize: 23,}}
+                        // onPressOut={()=>navigation.navigate('휴지통스크린')}
+                        type="clear"
+                        icon={<Icon name="sort-down" size={30} color="#4F4E4E"/>}
+                        title="  수정날짜 정렬방식 최신순,오래된순"
+                    />
+
+                    <Button
+                        titleStyle={{
                         color: "red",
                         fontSize: 23,}}
-                    // onPressOut={()=>navigation.navigate('휴지통스크린')}
-                    type="clear"
-                    icon={<Icon name="sort-down" size={30} color="#4F4E4E"/>}
-                    title="  수정날짜 정렬방식 최신순,오래된순"/>
-                    <Button
-                    titleStyle={{
-                        color: "red",
-                        fontSize: 23,}}
-                    // onPressOut={()=>navigation.navigate('휴지통스크린')}
-                    type="clear"
-                    icon={<Icon name="sort-down" size={30} color="#4F4E4E"/>}
-                    title="  만든날짜 정렬방식 최신순,오래된순"/>        
+                        // onPressOut={()=>navigation.navigate('휴지통스크린')}
+                        type="clear"
+                        icon={<Icon name="sort-down" size={30} color="#4F4E4E"/>}
+                        title="  만든날짜 정렬방식 최신순,오래된순"
+                    />        
                 
 
                 </Animated.View>
