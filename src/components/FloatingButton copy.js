@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 
 export default class FloatingButton extends React.Component {
     
+
     animation = new Animated.Value(0)
     
     toggleMenu = () => {
@@ -19,10 +20,9 @@ export default class FloatingButton extends React.Component {
 
         this.open = !this.open;
     };
-    
+
 
     render() {
-
 
 
         const AddMemoStyle = {
@@ -62,12 +62,12 @@ export default class FloatingButton extends React.Component {
                 }
             ]
         };
-
+        
 
         return (
-            
             <View style={styles.container}>
-                <TouchableWithoutFeedback onPress={this.toggleMenu}>
+
+                <TouchableWithoutFeedback>
                     <Animated.View style={[styles.button,styles.secondary,AddFolderStyle]}>
                         <Icon name="folder-plus" size={25} color="#F02A4B" />
                     </Animated.View>
@@ -77,7 +77,7 @@ export default class FloatingButton extends React.Component {
                     <Animated.View style={[styles.button,styles.secondary,AddMemoStyle]}>
                         <Icon name="pencil-alt" size={25} color="#F02A4B" />
                     </Animated.View>
-                    </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>
 
                 <TouchableWithoutFeedback onPress={this.toggleMenu}>
                     <Animated.View style={[styles.button, styles.menu,rotation]}>
@@ -87,7 +87,6 @@ export default class FloatingButton extends React.Component {
             </View>
         )
     }
-
 }    
 
 const styles = StyleSheet.create({
@@ -118,4 +117,3 @@ const styles = StyleSheet.create({
     }
 
 });
-

@@ -46,9 +46,21 @@ const Home = ({navigation}) => {
 
 
         <View style={{flex: 11, backgroundColor: Lay2, flexDirection: 'row', alignItems: 'flex-start',justifyContent: 'space-between',marginTop:5}}>
-       
-            <Memo title="Memo 1" title2="2020.02.02"/>
-            <Memo title="Memo 2" title2="2020.02.02"/>
+          
+          <Button
+            buttonStyle={{
+              width: 150,   
+              height : 150,
+              padding: 10,                       
+              margin: 15,                          
+              borderRadius: 3,
+            }}                  
+            type="outline"
+            onPressOut={()=>navigation.navigate('WriteMemo')}
+            title ="Memo"
+          />  
+          {/* <WriteMemo/> */}
+          {/* <Memo title="memo1"></Memo> */}
         </View>
         <View style={{flex: 1, backgroundColor: Lay3, flexDirection: 'column',alignItems: 'center', justifyContent: 'space-between'}}>
         <FloatingButton/>
