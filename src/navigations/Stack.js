@@ -11,6 +11,7 @@ import WriteMemo from '../screens/WriteMemo';
 import DrawerNavigator from './Drawer';
 import Constants from 'expo-constants';
 import FloatingButton from '../components/FloatingButton';
+import MemoOption from '../screens/MemoOption';
 
 const Stack = createStackNavigator();
 const StackNavigation = () => {
@@ -23,6 +24,7 @@ const StackNavigation = () => {
             <Stack.Screen name="Trash" component={Trash} />
             <Stack.Screen name="WriteMemo" component={WriteMemo} />
             <Stack.Screen name="FloatingButton" component={FloatingButton} />
+            <Stack.Screen name="MemoOption" component={MemoOption} />
 
         </Stack.Navigator>
     );

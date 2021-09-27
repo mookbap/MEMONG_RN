@@ -5,8 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Button,ListItem } from 'react-native-elements';
 
 
-    class FloatingButtons extends React.Component {
-    
+class FloatingButtons extends React.Component {
 
     animation = new Animated.Value(0)
     
@@ -22,12 +21,9 @@ import { Button,ListItem } from 'react-native-elements';
         this.open = !this.open;
     };
     
-
     render() {      
 
         const { navigation } = this.props;
-
-
 
         const AddMemoStyle = {
             transform: [
@@ -41,7 +37,6 @@ import { Button,ListItem } from 'react-native-elements';
 
             ]
         };
-
 
         const AddFolderStyle = {
             transform: [
@@ -67,8 +62,6 @@ import { Button,ListItem } from 'react-native-elements';
             ]
         };
 
-
-
         return (
             
             <View style={styles.container}>
@@ -92,7 +85,6 @@ import { Button,ListItem } from 'react-native-elements';
             </View>
         )
     }
-
 }    
 
 const styles = StyleSheet.create({
@@ -125,10 +117,8 @@ const styles = StyleSheet.create({
 });
 
 
-export default function FloatingButton (){
+export default function FloatingButton() {
     const navigation = useNavigation() // extract navigation prop here 
-    
     return <FloatingButtons navigation={navigation} /> //pass to your component.
-    
-      }
+}
 

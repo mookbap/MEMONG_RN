@@ -27,11 +27,11 @@ const Menu = ({navigation}) => {
                     onPressOut={()=>navigation.navigate('Home')}
                     type="clear"
                     icon={<Icon name="chevron-left" size={30} color="#4F4E4E"/>}
-                    title="  뒤로"/> 
+                    title="  메뉴"/> 
                 
             </View>        
             
-            <View style={{flex: 11, backgroundColor: Lay2, flexDirection: 'column', alignItems: 'flex-start',justifyContent: 'space-between'}}>
+            <View style={{flex: 11, backgroundColor: Lay2, flexDirection: 'column', alignItems: 'flex-start',justifyContent: 'fles-start'}}>
                 <Button
                     titleStyle={{
                         color: "red",
@@ -39,12 +39,39 @@ const Menu = ({navigation}) => {
                     // onPressOut={()=>navigation.navigate('휴지통스크린')}
                     type="clear"
                     icon={<Icon name="folder" size={30} color="#4F4E4E"/>}
-                    title="  폴더"/> 
+                    title="  폴더"/>
+
+                <Button
+                    titleStyle={{
+                        color: "red",
+                        fontSize: 23,}}
+                    // onPressOut={()=>navigation.navigate('휴지통스크린')}
+                    type="clear"
+                    icon={<Icon name="folder" size={30} color="#4F4E4E"/>}
+                    title="  폴더2"/> 
+
+                <Button
+                    titleStyle={{
+                        color: "red",
+                        fontSize: 23,}}
+                    // onPressOut={()=>navigation.navigate('휴지통스크린')}
+                    type="clear"
+                    icon={<Icon name="folder-plus" size={30} color="#4F4E4E"/>}
+                    title="  폴더추가"/>
+                <Button
+                    titleStyle={{
+                        color: "red",
+                        fontSize: 23,}}
+                    // onPressOut={()=>navigation.navigate('휴지통스크린')}
+                    type="clear"
+                    icon={<Icon name="slideshare" size={30} color="#4F4E4E"/>}
+                    title="  공유메모"/>
+                    
                 
             </View>
             <View style={{flex: 1, backgroundColor: Lay3, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end'}} >
                  <Button
-                    // onPressOut={()=>navigation.navigate('휴지통스크린')}
+                    onPressOut={()=>navigation.navigate('Trash')}
                     type="clear"
                     icon={<Icon name="trash-alt" size={40} color="#4F4E4E"/>}
                     title=" 휴지통   "/> 

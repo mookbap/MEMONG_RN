@@ -24,7 +24,13 @@ export default function WriteMemo() {
                         onPressOut={()=>navigation.navigate('Home')}
                         type="clear"
                         icon={<Icon name="chevron-left" size={30} color="#4F4E4E"/>}
-                        title="  뒤로"/> 
+                        title="  메모제목"/> 
+
+                        <Button
+                            type="clear"
+                            onPressOut={()=>navigation.navigate('MemoOption')}
+                            icon={<Icon name="ellipsis-v" size={23} color="#4F4E4E"/>}
+                        />                          
                     </View>
                     <View style={{backgroundColor:'#eeeee', flex:1, padding:10}}>
                         <TextInput 

@@ -12,7 +12,7 @@ import { Button,Switch,ListItem,Text} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 
-const More = ({navigation}) => {
+const MemoOption = ({navigation}) => {
     const BC = 0;
     const Lay1 = BC? 'powderblue': 'white', Lay2 = BC? 'skyblue':'white', Lay3= BC?'steelblue':'white';
     const [LockisEnabled, LocksetIsEnabled] = useState(false);
@@ -31,15 +31,15 @@ const More = ({navigation}) => {
                     titleStyle={{
                         color: "red",
                         fontSize: 23,}}
-                    onPressOut={()=>navigation.navigate('Home')}
+                    onPressOut={()=>navigation.navigate('WriteMemo')}
                     type="clear"
                     icon={<Icon name="chevron-left" size={30} color="#4F4E4E"/>}
-                    title="  옵션"/>
+                    title="  메모옵션"/>
             </View>
 
             <View style={{flex: 9, backgroundColor: Lay2, flexDirection: 'column', alignItems: 'flex-start'}}>
             <ListItem>
-                  <ListItem.Title>앱잠금</ListItem.Title>
+                  <ListItem.Title>알림설정</ListItem.Title>
                 <Switch
                     trackColor={{ false: "#767377", true: "#81b0ff" }}
                     thumbColor={LockisEnabled ? "#f5dd4b" : "#f4f3f4"}
@@ -48,8 +48,18 @@ const More = ({navigation}) => {
                     value={LockisEnabled}  
                 />
             </ListItem>
+        
+            <Button
+                titleStyle={{
+                    color: "black",
+                    fontSize: 18,
+                    marginLeft: 4}} 
+                type='clear'
+                title='알림설정시간'
+            />
+
             <ListItem>
-                  <ListItem.Title>위치설정</ListItem.Title>
+                  <ListItem.Title>중요도설정(on 상태에서는 삭제불가)</ListItem.Title>
                 <Switch
                     trackColor={{ false: "#767377", true: "#81b0ff" }}
                     thumbColor={LocateisEnabled ? "#f5dd4b" : "#f4f3f4"}
@@ -59,7 +69,7 @@ const More = ({navigation}) => {
                 />
             </ListItem>
             <ListItem>
-                  <ListItem.Title>알림</ListItem.Title>
+                  <ListItem.Title>잠금설정</ListItem.Title>
                 <Switch
                     trackColor={{ false: "#767377", true: "#81b0ff" }}
                     thumbColor={AlarmisEnabled ? "#f5dd4b" : "#f4f3f4"}
@@ -68,23 +78,14 @@ const More = ({navigation}) => {
                     value={AlarmisEnabled}
                 />
             </ListItem>
-            <ListItem>
-                  <ListItem.Title>다크모드</ListItem.Title>
-                <Switch
-                    trackColor={{ false: "#767377", true: "#81b0ff" }}
-                    thumbColor={DarkisEnabled ? "#f5dd4b" : "#f4f3f4"}
-                    ios_backgroundColor="#3e3e3e"
-                    onValueChange={DarkToggleSwitch}
-                    value={DarkisEnabled}  
-                />
-            </ListItem>
+
             <Button
                 titleStyle={{
                     color: "black",
                     fontSize: 18,
                     marginLeft: 4}} 
                 type='clear'
-                title='문의하기'
+                title='사진첨부'
             />
             <Button
                 titleStyle={{
@@ -92,27 +93,12 @@ const More = ({navigation}) => {
                     fontSize: 18,
                     marginLeft: 4}} 
                 type='clear'
-                title='동기화'
+                title='공유'
             />            
-            <Button
-                titleStyle={{
-                    color: "black",
-                    fontSize: 18,
-                    marginLeft: 4}} 
-                type='clear'
-                title='로그인,로그아웃'
-            />
-            <Button
-                titleStyle={{
-                    color: "black",
-                    fontSize: 18,
-                    marginLeft: 4}} 
-                type='clear'
-                title='백업'
-            />        
+    
             </View>
             <View style={{flex: 1, backgroundColor: Lay3, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', marginLeft:10}} >
-               <Text>버전정보</Text>
+               <Text>전체지우기</Text>
 
             </View>
 
@@ -132,4 +118,4 @@ const styles = StyleSheet.create({
     }
   });
 
-export default More;
+export default MemoOption;
