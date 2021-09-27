@@ -12,6 +12,7 @@ import BottomSheet from '../components/BottomSheet';
 import Constants from 'expo-constants';
 import FloatingButton from '../components/FloatingButton';
 import FloatingButtonFunc from '../components/FloatingButtonFunc';
+import AddFolderModal from '../components/AddFolderModal';
 
 const Home = ({navigation}) => {
   const BC = 0;
@@ -59,8 +60,7 @@ const Home = ({navigation}) => {
             onPressOut={()=>navigation.navigate('WriteMemo')}
             title ="Memo"
           />  
-          {/* <WriteMemo/> */}
-          {/* <Memo title="memo1"></Memo> */}
+        
         </View>
         <View style={{flex: 1, backgroundColor: Lay3, flexDirection: 'column',alignItems: 'center', justifyContent: 'space-between'}}>
         <FloatingButton/>

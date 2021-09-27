@@ -1,14 +1,25 @@
 import React from 'react';
-import {StyleSheet, Text, View, Animated, TouchableWithoutFeedback } from 'react-native';
+import {StyleSheet, Text, View, Animated, TouchableWithoutFeedback,Alert,TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
 import { Button,ListItem } from 'react-native-elements';
-
+import AddFolderModal from './AddFolderModal';
 
 class FloatingButtons extends React.Component {
 
-    animation = new Animated.Value(0)
+
+
+    state = {
+        isModalVisible: false,
+      };
     
+      showModal = () => this.setState({ isModalVisible: true });
+      hideModal = () => this.setState({ isModalVisible: false });
+    
+
+    animation = new Animated.Value(0)
+
+        
     toggleMenu = () => {
         const toValue = this.open ? 0 : 1;
 
@@ -20,6 +31,7 @@ class FloatingButtons extends React.Component {
 
         this.open = !this.open;
     };
+    
     
     render() {      
 
@@ -65,9 +77,13 @@ class FloatingButtons extends React.Component {
         return (
             
             <View style={styles.container}>
-                <TouchableWithoutFeedback onPress={this.toggleMenu}>
+                <TouchableWithoutFeedback onPress={this.showModal}>
                     <Animated.View style={[styles.button,styles.secondary,AddFolderStyle]}>
                         <Icon name="folder-plus" size={25} color="#F02A4B" />
+                        <AddFolderModal
+                            visible={this.state.isModalVisible}
+                            dismiss={this.hideModal}
+                        />
                     </Animated.View>
                 </TouchableWithoutFeedback>
 
