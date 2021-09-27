@@ -9,9 +9,9 @@ import { images } from '../images';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Button, SpeedDial,ListItem } from 'react-native-elements';
 import BottomSheet from '../components/BottomSheet';
-import AddMemo from './AddMemo';
-import FloatingButton from '../components/FloatingButton';
 import Constants from 'expo-constants';
+import FloatingButton from '../components/FloatingButton';
+import FloatingButtonFunc from '../components/FloatingButtonFunc';
 
 const Home = ({navigation}) => {
   const BC = 0;

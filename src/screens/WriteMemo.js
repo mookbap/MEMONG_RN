@@ -6,8 +6,6 @@ import { Button, SpeedDial,ListItem } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 
 
-
-
 export default function WriteMemo() {
 
     const [txt, selTxt] = useState('Hello world!')

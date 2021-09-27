@@ -12,7 +12,6 @@ import DrawerNavigator from './Drawer';
 import Constants from 'expo-constants';
 import FloatingButton from '../components/FloatingButton';
 
-
 const Stack = createStackNavigator();
 const StackNavigation = () => {
     return (

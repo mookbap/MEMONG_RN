@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, StyleSheet, Text, View, Animated, TouchableWithoutFeedback } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from 'react-navigation';
 
 
 export default class FloatingButton extends React.Component {
@@ -62,6 +63,9 @@ export default class FloatingButton extends React.Component {
                 }
             ]
         };
+
+        const { navigate } = this.props.navigation;
+
         
 
         return (
@@ -73,7 +77,7 @@ export default class FloatingButton extends React.Component {
                     </Animated.View>
                 </TouchableWithoutFeedback>
 
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('Menu')}>
                     <Animated.View style={[styles.button,styles.secondary,AddMemoStyle]}>
                         <Icon name="pencil-alt" size={25} color="#F02A4B" />
                     </Animated.View>

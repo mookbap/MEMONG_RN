@@ -1,11 +1,13 @@
 import React from 'react';
-import {Button, StyleSheet, Text, View, Animated, TouchableWithoutFeedback } from 'react-native';
+import {StyleSheet, Text, View, Animated, TouchableWithoutFeedback } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
+import { Button,ListItem } from 'react-native-elements';
 
 
-export default class FloatingButton extends React.Component {
+    class FloatingButtons extends React.Component {
     
+
     animation = new Animated.Value(0)
     
     toggleMenu = () => {
@@ -21,7 +23,9 @@ export default class FloatingButton extends React.Component {
     };
     
 
-    render() {
+    render() {      
+
+        const { navigation } = this.props;
 
 
 
@@ -64,6 +68,7 @@ export default class FloatingButton extends React.Component {
         };
 
 
+
         return (
             
             <View style={styles.container}>
@@ -73,7 +78,7 @@ export default class FloatingButton extends React.Component {
                     </Animated.View>
                 </TouchableWithoutFeedback>
 
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('WriteMemo')}>
                     <Animated.View style={[styles.button,styles.secondary,AddMemoStyle]}>
                         <Icon name="pencil-alt" size={25} color="#F02A4B" />
                     </Animated.View>
@@ -118,4 +123,12 @@ const styles = StyleSheet.create({
     }
 
 });
+
+
+export default function FloatingButton (){
+    const navigation = useNavigation() // extract navigation prop here 
+    
+    return <FloatingButtons navigation={navigation} /> //pass to your component.
+    
+      }
 
