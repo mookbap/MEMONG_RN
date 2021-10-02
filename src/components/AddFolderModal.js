@@ -16,7 +16,6 @@ import { TextInput } from 'react-native-gesture-handler';
 
 class AddFolderModal extends React.Component {
   static propTypes = {
-    children: t.node.isRequired,
     visible: t.bool.isRequired,
     dismiss: t.func.isRequired,
     transparent: t.bool,
@@ -41,12 +40,17 @@ class AddFolderModal extends React.Component {
           <TouchableWithoutFeedback onPress={props.dismiss}>
             <View style={styles.modalOverlay}>
 				<View style={styles.modalContent}>
-					<Text style={{ fontSize: 20 }}>폴더 이름을 입력해주세요!</Text>
+					<Text style={{ fontSize: 20,marginBottom:10 }}>폴더 이름을 입력해주세요!</Text>
 					<TextInput 
-					style={{borderWidth:1, padding:8, fontSize:20, width:260}}
+					style={{borderWidth:1, padding:8, fontSize:20,height:50 , width:260, margin: 10}}
 					placeholder="Enter a text..."/>
 					<View style={styles.button}>
 						<Button
+							style={{
+								borderStyle: 'solid',
+								borderColor: 'blue',
+								borderWidth: 5,
+							}}
 							titleStyle={{
 								color: "black",
 								fontSize: 20,
@@ -54,18 +58,21 @@ class AddFolderModal extends React.Component {
 							type='clear'
 							title='확인'
 						/>
-						<Button
+						{/* <Button
+							style={{
+								padding: 10,
+								borderStyle: 'solid',
+								borderColor: 'blue',
+								borderWidth: 5,
+							}}
 							titleStyle={{
 								color: "black",
 								fontSize: 20,
 							}} 
 							type='clear'
 							title='취소'
-						/>
+						/> */}
 					</View>
-
-
-
 				</View>
 			</View>
           </TouchableWithoutFeedback>
@@ -92,16 +99,21 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+	backgroundColor: 'rgba(0,0,0,0.1)',
 	justifyContent: "center",
 	alignItems: "center",
   },
 
   modalContent: {
-	backgroundColor: 'red',
+	// backgroundColor: 'red',
     position: 'absolute',
 	justifyContent: "center",
 	alignItems: "center",
+	padding: 10,
+	borderStyle: 'solid',
+	borderColor: 'black',
+	borderWidth: 5,
+
   },
 
 });
