@@ -100,6 +100,7 @@ const More = ({navigation}) => {
                     fontSize: 18,
                     marginLeft: 4}} 
                 type='clear'
+                onPressOut={()=>navigation.navigate('LogIn')}
                 title='로그인,로그아웃'
             />
             <Button

@@ -13,6 +13,7 @@ import Constants from 'expo-constants';
 import FloatingButton from '../components/FloatingButton';
 import MemoOption from '../screens/MemoOption';
 import AddFolderModal from '../components/AddFolderModal';
+import LogIn from '../screens/LogIn';
 
 const Stack = createStackNavigator();
 const StackNavigation = () => {
@@ -27,7 +28,7 @@ const StackNavigation = () => {
             <Stack.Screen name="FloatingButton" component={FloatingButton} />
             <Stack.Screen name="MemoOption" component={MemoOption} />
             <Stack.Screen name="AddFolderModal" component={AddFolderModal} />
-
+            <Stack.Screen name="LogIn" component={LogIn} />
 
         </Stack.Navigator>
     );
