@@ -5,7 +5,8 @@ import BaselineMore from '../assets/icons/baseline_more.png';
 import OutlineDelete from '../assets/icons/outline_delete.png';
 import BaselineFolder from '../assets/icons/baseline_folder.png';
 import BaselineNoteAdd from '../assets/icons/baseline_note_add.png';
-
+import Kakao from '../assets/logo/Kakao.png';
+import Naver from '../assets/logo/Naver.png'
 
 export const images = {
     menu: OutlineMenu,              //메뉴
@@ -15,4 +16,7 @@ export const images = {
     delete: OutlineDelete,          //삭제
     folder: BaselineFolder,         //폴더
     memoadd: BaselineNoteAdd,       //메모추가
-};
+
+    kakao: Kakao,
+    naver: Naver,
+}

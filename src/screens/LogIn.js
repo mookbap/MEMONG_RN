@@ -36,8 +36,12 @@ const LogIn = ({navigation}) => {
                     title="  로그인/로그아웃"/>
             </View>
 
-            <View style={{flex: 11, backgroundColor: Lay2, flexDirection: 'column', alignItems: 'flex-start',justifyContent: 'fles-start'}}>
-
+            <View style={{flex: 11, backgroundColor: Lay2, flexDirection: 'row', alignItems: 'center',justifyContent: 'space-evenly'}}>
+                    <IconButton type={images.kakao}/>
+                    <IconButton type={images.naver}/>
+                    <Button
+                    type="clear"
+                    icon={<Icon name="apple" size={50} color="#4F4E4E"/>}/>
             </View>
 
 
