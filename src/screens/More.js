@@ -6,7 +6,7 @@ import IconButton  from '../components/IconButton'
 import Memo from '../components/Memo';
 import { images } from '../images';
 import Constants from 'expo-constants';
-
+import LogIn from './LogIn';
 
 import { Button,Switch,ListItem,Text} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -24,6 +24,11 @@ const More = ({navigation}) => {
     const [DarkisEnabled, DarksetIsEnabled] = useState(false);
     const DarkToggleSwitch = () => DarksetIsEnabled(previousState => !previousState);
 
+
+    const [ modalVisible, setModalVisible ] = useState(false);
+    const pressButton = () => {
+        setModalVisible(true);
+    }
       return(
         <Container style={styles.screen}>
             <View style={{flex: 1, backgroundColor: Lay1, flexDirection: 'column', alignItems: 'flex-start',justifyContent: 'space-between'}}>
@@ -100,9 +105,16 @@ const More = ({navigation}) => {
                     fontSize: 18,
                     marginLeft: 4}} 
                 type='clear'
-                onPressOut={()=>navigation.navigate('LogIn')}
+                onPress={pressButton}
                 title='로그인,로그아웃'
+                />
+            <LogIn
+            modalVisible={modalVisible}
+            setModalVisible={setModalVisible}
             />
+              
+                
+            
             <Button
                 titleStyle={{
                     color: "black",

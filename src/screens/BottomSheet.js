@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useRef, useState } from 'react';
 import {
     View,
@@ -11,7 +13,7 @@ import {
 } from 'react-native';
 import { Button,ButtonGroup } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import ViewSelector from './ViewSelector';
+import ViewSelector from '../components/ViewSelector';
 
 const BottomSheet = (props) => {
     const { modalVisible, setModalVisible } = props;

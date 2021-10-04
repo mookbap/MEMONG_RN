@@ -1,65 +1,138 @@
 
-import React, {useState} from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import styled from 'styled-components/native';
-import IconButton  from '../components/IconButton';
-import { images } from '../images';
+
+import React, { useEffect, useRef, useState } from 'react';
+import {
+    View,
+    StyleSheet,
+    Text,
+    Modal,
+    Animated,
+    TouchableWithoutFeedback,
+    Dimensions,
+    PanResponder
+} from 'react-native';
+import { Button,ButtonGroup } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { Button, SpeedDial,ListItem } from 'react-native-elements';
-import Constants from 'expo-constants';
+import ViewSelector from '../components/ViewSelector';
+import IconButton from '../components/IconButton';
+import { images } from '../images';
 
-const LogIn = ({navigation}) => {
-    const BC = 0;
-    const Lay1 = BC? 'powderblue': 'white', Lay2 = BC? 'skyblue':'white', Lay3= BC?'steelblue':'white';
-    const [ modalVisible, setModalVisible ] = useState(false);
-    const pressButton = () => {
-        setModalVisible(true);
+const LogInCopy = (props) => {
+    const { modalVisible, setModalVisible } = props;
+    const screenHeight = Dimensions.get("screen").height;
+    const panY = useRef(new Animated.Value(screenHeight)).current;
+    const translateY = panY.interpolate({
+        inputRange: [-1, 0, 1],
+        outputRange: [0, 0, 1],
+    });
+
+    const resetBottomSheet = Animated.timing(panY, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+    });
+
+    const closeBottomSheet = Animated.timing(panY, {
+        toValue: screenHeight,
+        duration: 300,
+        useNativeDriver: true,
+    });
+
+
+    const panResponders = useRef(PanResponder.create({
+        onStartShouldSetPanResponder: () => true,
+        onMoveShouldSetPanResponder: () => false,
+        onPanResponderMove: (event, gestureState) => {
+            panY.setValue(gestureState.dy);
+        },
+        onPanResponderRelease: (event, gestureState) => {
+            if(gestureState.dy > 0 && gestureState.vy > 1.5) {
+                closeModal();
+            }
+            else {
+                resetBottomSheet.start();
+            }
+        }
+    })).current;
+
+    useEffect(()=>{
+        if(props.modalVisible) {
+            resetBottomSheet.start();
+        }
+    }, [props.modalVisible]);
+
+    const closeModal = () => {
+        closeBottomSheet.start(()=>{
+            setModalVisible(false);
+        })
     }
-    const [open, setOpen] = React.useState(false);
 
-    return(
-        <Container>
-            <View style={{flex: 1, backgroundColor: Lay1, flexDirection: 'column', alignItems: 'flex-start',justifyContent: 'space-between'}}>
-            <Button
-                    titleStyle={{
-                        color: "red",
-                        fontSize: 23,}}
-                    onPressOut={()=>navigation.navigate('Home')}
-                    type="clear"
-                    icon={<Icon name="chevron-left" size={30} color="#4F4E4E"/>}
-                    title="  로그인/로그아웃"/>
+    return (
+        <Modal
+            visible={modalVisible}
+            animationType={"fade"}
+            transparent
+            statusBarTranslucent
+        >
+            <View style={styles.overlay}>
+                
+                    
+                <TouchableWithoutFeedback
+                    onPress={closeModal}
+                >
+                    <View style={styles.background}/>
+                </TouchableWithoutFeedback>
+
+                
+                <Animated.View
+                    style={{...styles.icon, transform: [{ translateY: translateY }]}}
+                    {...panResponders.panHandlers}>
+                    
+                    <View style={{flex: 2, justifyContent: 'center',alignItems:'start',marginRight: 10, marginLeft: 10}}>
+                     <Text style={{fontSize:20}}> 다음으로 로그인 </Text>
+
+                    </View>
+                    <View style={{flex: 4,  flexDirection: 'row', justifyContent: 'space-evenly',alignItems:'center',marginRight: 10, marginLeft: 10}}>
+                        <IconButton type={images.kakao}/>
+                        <IconButton type={images.naver}/>
+                        <Button
+                        type="clear"
+                        icon={<Icon name="apple" size={50} color="#4F4E4E"/>}/>    
+
+                    </View>
+                    
+                </Animated.View>
             </View>
-
-            <View style={{flex: 11, backgroundColor: Lay2, flexDirection: 'row', alignItems: 'center',justifyContent: 'space-evenly'}}>
-                    <IconButton type={images.kakao}/>
-                    <IconButton type={images.naver}/>
-                    <Button
-                    type="clear"
-                    icon={<Icon name="apple" size={50} color="#4F4E4E"/>}/>
-            </View>
-
-
-        </Container>
-
-    );
+        </Modal>
+    )
 }
-const Container = styled.SafeAreaView`
-    flex: 1;
-    background-color: #fff;
-`;
+
 const styles = StyleSheet.create({
-
-    screen: {
-      paddingTop: Constants.statusBarHeight // Constants의 statusBarHeight 값을 이용한다.
+    overlay: {
+        flex: 1,
+        justifyContent: "flex-end",
+        backgroundColor: "rgba(0, 0, 0, 0.4)"
     },
-  
-    bottomNavigationView: {
-      backgroundColor: '#fff',
-      width: '100%',
-      height: 250,
-      justifyContent: 'center',
-      alignItems: 'center',
+    background: {
+        flex: 1,
+    },
+    bottomSheetContainer: {
+        height: 300,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "white",
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+    },
+    icon: {
+        height: 200,
+        backgroundColor: "white",
+      //  flexDirection: 'row', 
+       // alignItems: 'center',
+        //justifyContent: 'space-evenly',
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
     }
-  });
+})
 
-  export default LogIn;
+export default LogInCopy;

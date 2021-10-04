@@ -6,7 +6,6 @@ import Home from '../screens/Home';
 import Menu from '../screens/Menu';
 import More from '../screens/More';
 import Trash from '../screens/Trash';
-import AddMemo from '../screens/AddMemo';
 import WriteMemo from '../screens/WriteMemo';
 import DrawerNavigator from './Drawer';
 import Constants from 'expo-constants';
@@ -22,7 +21,6 @@ const StackNavigation = () => {
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Menu" component={Menu} />
             <Stack.Screen name="More" component={More} />
-            <Stack.Screen name="AddMemo" component={AddMemo} />
             <Stack.Screen name="Trash" component={Trash} />
             <Stack.Screen name="WriteMemo" component={WriteMemo} />
             <Stack.Screen name="FloatingButton" component={FloatingButton} />

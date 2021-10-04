@@ -8,7 +8,7 @@ import Memo from '../components/Memo';
 import { images } from '../images';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Button, SpeedDial,ListItem } from 'react-native-elements';
-import BottomSheet from '../components/BottomSheet';
+import BottomSheet from './BottomSheet';
 import Constants from 'expo-constants';
 import FloatingButton from '../components/FloatingButton';
 import FloatingButtonFunc from '../components/FloatingButtonFunc';
