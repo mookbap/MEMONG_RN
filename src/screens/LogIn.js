@@ -1,18 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
+
 import React, {useState} from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import styled from 'styled-components/native';
-import EventInput from '../components/EventInput';
-import IconButton  from '../components/IconButton'
-import Memo from '../components/Memo';
+import IconButton  from '../components/IconButton';
 import { images } from '../images';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Button, SpeedDial,ListItem } from 'react-native-elements';
-import BottomSheet from '../components/BottomSheet';
 import Constants from 'expo-constants';
-import FloatingButton from '../components/FloatingButton';
-import FloatingButtonFunc from '../components/FloatingButtonFunc';
-import AddFolderModal from '../components/AddFolderModal';
 
 const LogIn = ({navigation}) => {
     const BC = 0;
