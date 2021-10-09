@@ -8,6 +8,8 @@ import { images } from '../images';
 import Constants from 'expo-constants';
 import LogIn from './LogIn';
 
+import { DarkTheme  } from '@react-navigation/native';
+
 import { Button,Switch,ListItem,Text} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 

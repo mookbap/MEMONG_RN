@@ -13,6 +13,8 @@ import FloatingButton from '../components/FloatingButton';
 import MemoOption from '../screens/MemoOption';
 import AddFolderModal from '../components/AddFolderModal';
 import LogIn from '../screens/LogIn';
+import { DarkTheme  } from '@react-navigation/native';
+
 
 const Stack = createStackNavigator();
 const StackNavigation = () => {
