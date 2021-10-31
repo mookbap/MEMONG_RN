@@ -11,7 +11,6 @@ import { Button, SpeedDial,ListItem } from 'react-native-elements';
 import BottomSheet from './BottomSheet';
 import Constants from 'expo-constants';
 import FloatingButton from '../components/FloatingButton';
-import FloatingButtonFunc from '../components/FloatingButtonFunc';
 import AddFolderModal from '../components/AddFolderModal';
 
 
