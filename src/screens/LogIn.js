@@ -94,7 +94,7 @@ const LogInCopy = (props) => {
                     </View>
                     <View style={{flex: 4,  flexDirection: 'row', justifyContent: 'space-evenly',alignItems:'center',marginRight: 10, marginLeft: 10}}>
                         <IconButton type={images.kakao}/>
-                        <IconButton type={images.naver}/>
+                        <IconButton type={images.facebook}/>
                         <Button
                         type="clear"
                         icon={<Icon name="apple" size={50} color="#4F4E4E"/>}/>    
