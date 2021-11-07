@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-export default function WriteMemo() {
+export default function WriteMemo({visible,onClose,onSubmit}) {
 
     const [txt, setTxt] = useState('Hello world!')
     const navigation = useNavigation();
@@ -17,7 +17,19 @@ export default function WriteMemo() {
         loadData(); //이 스크린 시작할때 실행시킴
     },[]);
 
-    
+    const [title, setTitle] = useState('');
+    const [memo,setMemo] = useState('');
+    const handleModalClose = () =>{
+        Keyboard.dismiss();
+    };
+
+    const handleOnChangeText = (text, valueFor) => {
+        if(valueFor === 'title') setTitle(text);
+        if(valueFor === 'memo') setMemo(text);
+    };
+
+
+
     const saveData = async (value) => {
         try {
           await AsyncStorage.setItem('memong', value)
@@ -56,7 +68,20 @@ export default function WriteMemo() {
                             onPressOut={()=>navigation.navigate('Home')}
                             type="clear"
                             icon={<Icon name="chevron-left" size={30} color="#4F4E4E"/>}
-                            title="  메모제목"/> 
+                            /> 
+
+                            <TextInput 
+                                value={title}
+                                placeholder='Title' style={{
+                                    borderBottomWidth:2 ,
+                                    borderBottomColor: 'black',
+                                    fontSize: 20,
+                                    width: '70%',
+                                    height: 40,
+                                    fontWeight: 'bold'
+                                }}
+                                onChangeText={(text) => handleOnChangeText(text,'title')} 
+                            />
 
                         <Button
                             type="clear"
@@ -69,6 +94,15 @@ export default function WriteMemo() {
                             value={txt}
                             onChangeText={txt => setTxt(txt)}
                             multiline
+                            value={memo}
+                            multiline 
+                            placeholder='Memo' 
+                            style={{
+                                borderBottomWidth:2 ,
+                                borderBottomColor: 'black',
+                                fontSize: 20,
+                                height: '100%'}}
+                            onChangeText={(text) => handleOnChangeText(text,'memo')} 
                         />
                     </View>
             </SafeAreaView>

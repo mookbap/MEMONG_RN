@@ -4,6 +4,8 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
 import { Button,ListItem } from 'react-native-elements';
 import AddFolderModal from './AddFolderModal';
+import Home from '../screens/Home';
+import WriteMemoModal from '../screens/WriteMemoModal';
 
 class FloatingButtons extends React.Component {
 
@@ -46,7 +48,6 @@ class FloatingButtons extends React.Component {
                         outputRange: [0, -80]
                     })
                 }
-
             ]
         };
 
@@ -59,7 +60,6 @@ class FloatingButtons extends React.Component {
                         outputRange: [0, -140]
                     })
                 }
-
             ]
         };
 
