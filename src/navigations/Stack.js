@@ -14,7 +14,7 @@ import MemoOption from '../screens/MemoOption';
 import AddFolderModal from '../components/AddFolderModal';
 import LogIn from '../screens/LogIn';
 import { DarkTheme  } from '@react-navigation/native';
-
+import WriteMemoModal from '../screens/WriteMemoModal';
 
 const Stack = createStackNavigator();
 const StackNavigation = () => {
@@ -29,6 +29,7 @@ const StackNavigation = () => {
             <Stack.Screen name="MemoOption" component={MemoOption} />
             <Stack.Screen name="AddFolderModal" component={AddFolderModal} />
             <Stack.Screen name="LogIn" component={LogIn} />
+            <Stack.Screen name="WriteMemoModal" component={WriteMemoModal} />
 
         </Stack.Navigator>
     );

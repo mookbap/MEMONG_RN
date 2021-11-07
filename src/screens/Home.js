@@ -1,27 +1,58 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import EventInput from '../components/EventInput';
 import IconButton  from '../components/IconButton';
 import Memo from '../components/Memo';
 import { images } from '../images';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon, { FA5Style } from 'react-native-vector-icons/FontAwesome5';
 import { Button, SpeedDial,ListItem } from 'react-native-elements';
 import BottomSheet from './BottomSheet';
 import Constants from 'expo-constants';
-import FloatingButton from '../components/FloatingButton';
+// import FloatingButton from '../components/FloatingButton';
 import AddFolderModal from '../components/AddFolderModal';
-
+import WriteMemoModal from './WriteMemoModal';
+import FloatingButtonFunc from '../components/FloatingButtonFunc';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { FlatList } from 'react-native-gesture-handler';
+import Note from '../components/Note';
 
 const Home = ({navigation}) => {
   const BC = 0;
   const Lay1 = BC? 'powderblue': 'white', Lay2 = BC? 'skyblue':'white', Lay3= BC?'steelblue':'white';
+
   const [ modalVisible, setModalVisible ] = useState(false);
+
   const pressButton = () => {
-      setModalVisible(true);
-  }
-  const [open, setOpen] = React.useState(false);
+    setModalVisible(true);
+  };
+
+  const [open, setOpen] = React.useState(false); 
+
+  const [ memoModalVisible, setMemoModalVisible ] = useState(false);
+
+  const [notes, setNotes] = useState([]);
+
+
+  const findNotes = async () => {
+    const result = await AsyncStorage.getItem('notes')
+    console.log(result)
+    if(result !== null) setNotes(JSON.parse(result));
+  };
+
+  useEffect(() => {
+    findNotes();
+  }, [])
+
+  const handleOnSubmit = async (title,memo) => {
+    const note = {id: Date.now(), title, memo, time: Date.now()};
+    const updateNotes = [...notes,note];
+    setNotes(updateNotes)
+    await AsyncStorage.setItem('notes', JSON.stringify(updateNotes))
+    console.log(note)
+  };
+
 
   return (
     <Container style={styles.screen}>
@@ -45,10 +76,15 @@ const Home = ({navigation}) => {
             icon={<Icon name="ellipsis-v" size={23} color="#4F4E4E"/>}/>  
         </View>
 
-
         <View style={{flex: 11, backgroundColor: Lay2, flexDirection: 'row', alignItems: 'flex-start',justifyContent: 'space-between',marginTop:5}}>
+
+          <FlatList
+            data={notes}
+            keyExtractor={item => item.id.toString()}
+            renderItem = {({ item }) =>  <Note item = {item} />}
+          />
           
-          <Button
+          {/* <Button
             buttonStyle={{
               width: 150,   
               height : 150,
@@ -59,11 +95,30 @@ const Home = ({navigation}) => {
             type="outline"
             onPressOut={()=>navigation.navigate('WriteMemo')}
             title ="Memo"
-          />  
-        
+          /> */}
+          <Button
+            buttonStyle={{
+              width: 150,   
+              height : 150,
+              padding: 10,                       
+              margin: 15,                          
+              borderRadius: 3,
+            }}                  
+            type="outline"
+            onPress = {() => setMemoModalVisible(true)}
+            title ="MemoModal"
+          />
+
         </View>
         <View style={{flex: 1, backgroundColor: Lay3, flexDirection: 'column',alignItems: 'center', justifyContent: 'space-between'}}>
-        <FloatingButton/>
+        <WriteMemoModal 
+          visible={memoModalVisible} 
+          onClose={()=> setMemoModalVisible(false)}
+          onSubmit={handleOnSubmit}
+        />
+        {/* <FloatingButtonFunc/> */}
+        <FloatingButtonFunc/>
+
         </View>
     </Container> 
   );
