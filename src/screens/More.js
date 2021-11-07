@@ -25,8 +25,6 @@ const More = ({navigation}) => {
     const AlarmToggleSwitch = () => AlarmsetIsEnabled(previousState => !previousState);
     const [DarkisEnabled, DarksetIsEnabled] = useState(false);
     const DarkToggleSwitch = () => DarksetIsEnabled(previousState => !previousState);
-
-
     const [ modalVisible, setModalVisible ] = useState(false);
     const pressButton = () => {
         setModalVisible(true);
