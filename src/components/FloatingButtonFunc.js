@@ -4,11 +4,11 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
 import { Button,ListItem } from 'react-native-elements';
 import AddFolderModal from './AddFolderModal';
-import WriteMemoModal from '../screens/WriteMemoModal';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import WriteMemoModal from "../screens/WriteMemoModal";
+import Home,{setMemoModalVisible} from '../screens/Home'
 
-
-const FloatingButtonFunc = () => {
+const FloatingButtonFunc = ({controlMemoModalVisible}) => {
 
     // const [ modalVisible, setModalVisible ] = useState(false);
 
@@ -16,14 +16,12 @@ const FloatingButtonFunc = () => {
     //     setModalVisible(true);
     // };
 
+    const navigation = useNavigation();
 
-    const [ memoModalVisible, setMemoModalVisible ] = useState(false);
 
     const [open, setOpen] = useState(false); 
 
-    // const state = {
-    //     isModalVisible: false,
-    //   };
+    
 
       const [ showModal, setShowModalVisible ] = useState(false);
       const hideModal = () => {
@@ -87,15 +85,34 @@ const FloatingButtonFunc = () => {
         ]
     };
 
-    const handleOnSubmit = async (title,memo) => {
-        const note = {id: Date.now(), title, memo, time: Date.now()};
-        const updateNotes = [...notes,note];
-        setNotes(updateNotes)
-        await AsyncStorage.setItem('notes', JSON.stringify(updateNotes))
-        console.log(note)
-      };
+    const controlWriteMemoModal = () => {
+        console.log("메모켜기")
+        controlMemoModalVisible(true)
+    }
 
-      const [notes, setNotes] = useState([]);
+    // const [ memoModalVisible, setMemoModalVisible ] = useState(false);
+
+
+    // const handleOnSubmit = async (title,memo) => {
+    //     const note = {id: Date.now(), title, memo, time: Date.now()};
+    //     const updateNotes = [...notes,note];
+    //     setNotes(updateNotes)
+    //     await AsyncStorage.setItem('notes', JSON.stringify(updateNotes))
+    //     console.log(note)
+    //     console.log("업데이트 시작!")
+    //   };
+
+    //   const handleSubmit = () => {
+    //     if(!title.trim() && memo.trim()) return onClose();
+    //     onSubmit(title,memo);
+    //     setTitle('');
+    //     setMemo('');
+    //     onClose();
+        
+    // };
+    
+
+    //   const [notes, setNotes] = useState([]);
 
     //   const findNotes = async () => {
     //     const result = await AsyncStorage.getItem('notes')
@@ -109,12 +126,13 @@ const FloatingButtonFunc = () => {
 
 
   return (
+      
     <View style={styles.container}>
-                <WriteMemoModal 
+                {/* <WriteMemoModal 
                     visible={memoModalVisible} 
                     onClose={()=> setMemoModalVisible(false)}
                     onSubmit={handleOnSubmit}
-                />
+                /> */}
         
         
                 <TouchableWithoutFeedback 
@@ -132,6 +150,7 @@ const FloatingButtonFunc = () => {
 
                 <TouchableWithoutFeedback 
                     onPress = {() => setMemoModalVisible(true)}
+                    // onPress={()=>navigation.navigate('WriteMemoModal')}
                     onPressOut={toggleMenu}
                 >
                     <Animated.View style={[styles.button,styles.secondary,AddMemoStyle]}>

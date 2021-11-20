@@ -7,10 +7,8 @@ import styled from 'styled-components/native';
 import { useNavigation } from "@react-navigation/core";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-
 const WriteMemoModal = ({visible,onClose,onSubmit}) => {
-
+    const navigation = useNavigation();
 
 
     const [title, setTitle] = useState('');
@@ -23,16 +21,15 @@ const WriteMemoModal = ({visible,onClose,onSubmit}) => {
         if(valueFor === 'title') setTitle(text);
         if(valueFor === 'memo') setMemo(text);
     };
-  
 
     const handleSubmit = () => {
-        if(!title.trim() && memo.trim()) return onClose();
-        onSubmit(title,memo);
-        setTitle('');
-        setMemo('');
-        onClose();
-    };
-
+      if(!title.trim() && memo.trim()) return onClose();
+      onSubmit(title,memo);
+      setTitle('');
+      setMemo('');
+      onClose();
+      
+  };
     return (
         <>
                 <StatusBar style='auto' />
@@ -41,6 +38,7 @@ const WriteMemoModal = ({visible,onClose,onSubmit}) => {
                     <View style={{padding:10, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
                         <Button
                             onPress={handleSubmit}
+                            // onPressOut={()=>navigation.navigate('Home')}
                             type="clear"
                             icon={<Icon name="chevron-left" size={30} color="#4F4E4E"/>}
                         /> 
