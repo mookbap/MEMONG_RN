@@ -17,19 +17,20 @@ const WriteMemoModal = ({visible,onClose,onSubmit}) => {
         Keyboard.dismiss();
     };
 
+    const handleSubmit = () => {
+        if(!title.trim() && !memo.trim()) return onClose();
+    
+        onSubmit(title,memo);
+        setTitle('');
+        setMemo('');
+        onClose();
+    };
+
     const handleOnChangeText = (text, valueFor) => {
         if(valueFor === 'title') setTitle(text);
         if(valueFor === 'memo') setMemo(text);
     };
 
-    const handleSubmit = () => {
-      if(!title.trim() && memo.trim()) return onClose();
-      onSubmit(title,memo);
-      setTitle('');
-      setMemo('');
-      onClose();
-      
-  };
     return (
         <>
                 <StatusBar style='auto' />

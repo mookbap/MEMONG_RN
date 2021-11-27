@@ -55,6 +55,8 @@ const Home = ({navigation}) => {
     console.log('홈화면 노트새로고침 시작 !')
 
     // AsyncStorage.clear(); //초기화
+    // console.log('AsyncStorage clean!')
+
 
     findNotes();
   }, []);
@@ -145,11 +147,8 @@ const Home = ({navigation}) => {
               title ="MemoModal"
             />
         <View style={{flex: 1, backgroundColor: Lay3, flexDirection: 'column',alignItems: 'center', justifyContent: 'space-between'}}>
-        <FloatingButtonFunc
-          visible={memoModalVisible} 
-          onClose={()=> setMemoModalVisible(false)}
-          onSubmit={handleOnSubmit}
-        />
+
+        <FloatingButtonFunc/>
 
         <WriteMemoModal 
           visible={memoModalVisible} 
